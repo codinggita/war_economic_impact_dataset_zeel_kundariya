@@ -1,217 +1,218 @@
-# 🚀 War Economic Impact Analysis
+<div align="center">
 
-🔗 **Important Links**
-🌐 **Live Project**: Coming Soon
-💻 **GitHub Repository**: [Your GitHub Link Here]
-📂 **Dataset (Google Drive)**: [https://drive.google.com/file/d/1kaIzjQShdkezc50liw4jFp9rwqAMkJVR/view?usp=drive_link](https://drive.google.com/file/d/1kaIzjQShdkezc50liw4jFp9rwqAMkJVR/view?usp=drive_link)
-📘 **Assignment Repo**: [Assignment Repository Link Here]
+# 🚀 War Economic Impact Analysis API
+
+### **A production-grade backend engine for tracking, analyzing, and visualizing the global economic consequences of armed conflicts.**
+
+[![Node.js Version](https://img.shields.io/badge/Node.js-v18.0.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-v5.2.1-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-v6.0-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![JWT](https://img.shields.io/badge/JWT-Authentication-black?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 ---
 
-## 📌 Project Overview
-**War Economic Impact Analysis** is a comprehensive full-stack platform designed to analyze, visualize, and track the economic consequences of historical and ongoing conflicts. By processing a real-world dataset of thousands of conflict records, the system provides insights into how wars affect GDP, inflation, poverty, and unemployment.
+[Explore Docs](https://github.com/Zeelkundariya/war_economic_impact_dataset_zeel_kundariya#readme) · [Report Bug](https://github.com/Zeelkundariya/war_economic_impact_dataset_zeel_kundariya/issues) · [Request Feature](https://github.com/Zeelkundariya/war_economic_impact_dataset_zeel_kundariya/issues)
 
-The system is built to provide researchers, students, and policymakers with a structured way to explore the economic devastation caused by warfare across different regions and time periods.
+</div>
 
-## 🎯 Objectives
-- Build a scalable RESTful API system using Node.js and Express.
-- Design a high-performance MongoDB schema based on real-world economic datasets.
-- Implement advanced multi-parameter filtering and regex-based search.
-- Provide data-driven analytics and trending insights for conflict impact.
-- Ensure secure user data management and authentication using JWT.
-- Follow industry-standard MVC architecture and clean code practices.
+## 🌟 Project Vision
 
-## ❓ Problem Statement
-Understanding the long-term economic damage of war is difficult due to:
-- ❌ **Scattered Data**: Economic statistics are often fragmented across different reports.
-- ❌ **Poor Visualization**: Hard to compare how different conflicts impact specific sectors (e.g., Agriculture vs. Energy).
-- ❌ **Lack of Searchability**: No centralized way to search for conflicts by inflation rates, GDP loss, or reconstruction costs.
-- ❌ **No Predictive Context**: Difficult to identify "high-risk" zones or "economic collapse" trends.
+> "Providing researchers and policymakers with a high-fidelity data ecosystem to understand the long-term economic devastation of war, enabling better reconstruction strategies and global stability monitoring."
 
-## 💡 Solution
-This project centralizes war-related economic data into a structured knowledge base where users can:
-- ✅ **Browse Conflicts**: Explore detailed records of World Wars, Civil Wars, and Interstate conflicts.
-- ✅ **Analyze Impact**: View detailed metrics on inflation, currency devaluation, and poverty spikes.
-- ✅ **Advanced Filtering**: Filter by region, country, status (Ongoing/Resolved), and specific economic thresholds.
-- ✅ **Analytics Dashboard**: Identify the highest war costs and reconstruction requirements globally.
-- ✅ **Security**: Protect data and user personalized features with robust JWT authentication.
+---
 
-## 🧠 Dataset Structure
-The application is built on a massive JSON dataset with records structured as follows:
+## 📖 Introduction
 
-```json
-{
-  "Conflict_Name": "Syrian Civil War",
-  "Conflict_Type": "Civil War",
-  "Region": "Middle East",
-  "Start_Year": "2011",
-  "End_Year": "2026",
-  "Status": "Ongoing",
-  "Primary_Country": "Syria",
-  "GDP_Change_%": "-34.81",
-  "Inflation_Rate_%": "55.45",
-  "Cost_of_War_USD": "114215767997",
-  "Estimated_Reconstruction_Cost_USD": "178638357922"
-}
-```
+The **War Economic Impact Analysis API** is a high-performance backend system designed to process and analyze a massive dataset of 300,000+ conflict records. It tracks critical economic metrics such as **GDP volatility, inflation spikes, and reconstruction costs** across historical and modern warfare.
 
-## 🗄️ Database Schema Design
-The MongoDB schema is optimized for both analytical queries and frequent updates:
+This system is built with a **Modular Layered Architecture (MVC)**, ensuring scalability and robust data integrity. It features a custom automated seeder to handle large-scale data ingestion and a secure JWT-based authentication layer to protect administrative operations.
 
-```javascript
-{
-  Conflict_Name: String,
-  Conflict_Type: String,
-  Region: String,
-  Start_Year: String,
-  End_Year: String,
-  Status: String,
-  Primary_Country: String,
-  Economic_Metrics: {
-    GDP_Change: Number,
-    Inflation_Rate: Number,
-    Currency_Devaluation: Number
-  },
-  Social_Impact: {
-    Poverty_Rate: Number,
-    Food_Insecurity: Number,
-    Unemployment_Rate: Number
-  },
-  Financials: {
-    Cost_of_War: Number,
-    Reconstruction_Cost: Number
-  }
-}
-```
+---
 
-## ✅ Key Design Decisions
-- **Normalized Referencing**: Separate collections for `Regions` and `Countries` to maintain data integrity.
-- **Hybrid Storage**: Embedding core economic metrics within the conflict document for fast retrieval.
-- **Advanced Indexing**: Compound indexes on `Region`, `Status`, and `Conflict_Type` for millisecond query response.
-- **JWT-based Auth**: Stateless authentication to ensure scalability.
+## 🛠 Tech Stack
 
-## 🏗️ System Architecture
-The project follows a **Modular Layered Architecture**:
-- **Frontend (React)** → Dynamic UI & Data Visualization.
-- **Backend (Express)** → API Routing & Controller logic.
-- **Database (MongoDB)** → Distributed data storage.
-- **Middleware Layer** → Handling JWT Authentication, Request Logging, and Global Error Handling.
+| Technology | Purpose |
+| :--- | :--- |
+| **Node.js** | Runtime Environment |
+| **Express.js** | Web Framework (v5.x) |
+| **MongoDB** | NoSQL Database |
+| **Mongoose** | ODM for Schema Management |
+| **JWT** | Secure Stateless Authentication |
+| **Bcrypt.js** | Advanced Password Hashing |
+| **Morgan** | Real-time Request Logging |
+| **Dotenv** | Secure Environment Configuration |
+| **CORS** | Cross-Origin Resource Sharing |
 
-## ✨ Features
+---
 
-### 🔹 Core Features
-- Full CRUD operations for all conflict and economic entities.
-- Advanced search functionality (Regex-based search on Conflict names).
-- Multi-parameter filtering (by status, region, inflation above X, etc.).
-- Robust pagination and sorting system.
+## ✨ Key Features
 
-### 🔹 User Features
-- Secure Registration & Login with Password Hashing (Bcrypt).
-- JWT protected routes for administrative actions.
-- User profile management.
+-   📊 **Massive Data Handling**: Optimized for querying and managing over 300,000+ conflict records.
+-   👤 **Secure Auth System**: Implementation of JWT for protected routes and Bcrypt for sensitive data.
+-   🏗️ **MVC Architecture**: Clean separation of concerns between Models, Controllers, and Routes.
+-   📥 **Automated Seeder**: Custom script for rapid bulk data import from JSON to MongoDB.
+-   🔍 **Advanced CRUD**: Full lifecycle management of conflict data with optimized search.
+-   🛡️ **Robust Error Handling**: Centralized middleware for consistent and descriptive API responses.
+-   📡 **RESTful Design**: Standardized endpoints for seamless frontend integration.
 
-### 🔹 Analytics & Stats
-- Trending conflicts (most impactful).
-- Top 10 highest inflation/war cost records.
-- Regional impact distribution.
+---
 
-### 🔹 Advanced Features
-- API Rate Limiting to prevent abuse.
-- Standardized API Response format.
-- Soft Delete functionality for data safety.
+## 🔐 Authentication & Security
 
-## ⚙️ API Overview
+The API implements industry-standard security protocols:
 
-### 📌 Conflicts
-- `GET /api/v1/conflicts` - Fetch all conflicts (with pagination)
-- `GET /api/v1/conflicts/:id` - Fetch single conflict details
-- `POST /api/v1/conflicts` - Add new conflict record (Admin only)
-- `DELETE /api/v1/conflicts/:id` - Remove record (Soft delete)
+-   **JWT Stateless Auth**: Secure token-based access control.
+-   **Password Hashing**: Uses `bcryptjs` for maximum entropy in credential storage.
+-   **Route Protection**: Multi-layered middleware to verify user identity before data mutation.
+-   **Environment Isolation**: Sensitive keys managed via `.env` with `.gitignore` protection.
+-   **Mongoose Validation**: Strict schema enforcement to prevent malformed data insertion.
 
-### 🔍 Search & Filter
-- `GET /api/v1/search?q=keyword` - Search across names and countries
-- `GET /api/v1/conflicts?region=Europe&status=Ongoing` - Filter by criteria
-
-### 📊 Statistics
-- `GET /api/v1/stats/total` - Summary of all records
-- `GET /api/v1/stats/highest-impact` - Peak economic damage data
-
-### 🔐 Authentication
-- `POST /api/v1/auth/register` - User Registration
-- `POST /api/v1/auth/login` - Secure Login
-
-## 🛠️ Tech Stack
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (Mongoose)
-- **Auth**: JWT (JSON Web Tokens), Bcrypt
-- **Logging**: Morgan
-- **Documentation**: Postman
+---
 
 ## 📂 Project Structure
+
 ```text
 war_economic_impact/
-└── server/
-    ├── config/         # DB & Env configs
-    ├── controllers/    # Request handlers
-    ├── models/         # Database schemas
-    ├── routes/         # API Endpoints
-    ├── middlewares/    # Auth & Logging
-    ├── services/       # Data processing
-    └── dataset.json    # Source Data
+├── server/
+│   ├── config/             # Database & environment configurations
+│   ├── controllers/        # Request handlers & business logic
+│   ├── middlewares/        # Auth & Error handling middleware
+│   ├── models/             # Mongoose schemas & data models
+│   ├── routes/             # RESTful API route definitions
+│   ├── dataset.json        # 300k+ source records
+│   ├── seeder.js           # Automated data ingestion script
+│   └── server.js           # Entry point for the Express server
+├── .gitignore              # Protection for .env & node_modules
+├── README.md               # Project documentation
+└── package.json            # Dependencies & scripts
 ```
 
-## 🚀 Getting Started
+---
 
-### 1️⃣ Clone Repository
+## 🚀 Installation & Setup
+
+### 1. Clone the repository
 ```bash
-git clone https://github.com/zeel-k/war_economic_impact.git
+git clone https://github.com/Zeelkundariya/war_economic_impact_dataset_zeel_kundariya.git
+cd war_economic_impact_dataset_zeel_kundariya
 ```
 
-### 2️⃣ Install Dependencies
+### 2. Install dependencies
 ```bash
 cd server
 npm install
 ```
 
-### 3️⃣ Setup Environment Variables
-Create a `.env` file:
+### 3. Setup Environment Variables
+Create a `.env` file in the `server/` directory:
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_secret_key
+MONGO_URI=mongodb://localhost:27017/war_economic_impact
+JWT_SECRET=your_super_secret_key
+NODE_ENV=development
 ```
 
-### 4️⃣ Run Server
+### 4. Run the Data Seeder
 ```bash
-npm run dev
+npm run data:import
 ```
 
-## 📥 Data Import Strategy
-- **Bulk Insertion**: Using `insertMany()` for high-speed initial seeding.
-- **Validation**: Strict schema validation during parsing.
-- **Transformation**: Mapping flat JSON data to nested MongoDB documents.
+### 5. Start the Server
+```bash
+# Development mode
+npm run dev
 
-## 🧪 Testing
-- **Postman**: API testing for all endpoints.
-- **CRUD Validation**: Ensuring data consistency after updates.
-- **Stress Testing**: Handling large data queries with pagination.
+# Production mode
+npm start
+```
 
-## 📈 Performance Optimizations
-- **Indexing**: Optimized fields for fast filtering.
-- **Pagination**: Limiting response payload for high performance.
-- **Lean Queries**: Using `.lean()` in Mongoose for read-only operations.
+---
 
-## ⚠️ Challenges Faced
-- Processing and normalizing a 300,000+ line dataset.
-- Balancing between embedded and referenced data structures.
-- Implementing flexible, multi-layered filtering queries.
+## 🛣 API Endpoints
 
-## 🔮 Future Improvements
-- AI-based economic trend prediction.
-- Interactive Map visualization for global impact.
-- Real-time news integration for ongoing conflicts.
+### 🔐 Authentication
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| POST | `/api/v1/auth/register` | Register a new user | Public |
+| POST | `/api/v1/auth/login` | Login user & get token | Public |
 
-## 🤝 Contribution
-This project is an academic assignment. External contributions are currently closed.
+### 👥 Conflict Management (CRUD)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| GET | `/api/v1/conflicts` | Fetch all conflict records | Public |
+| GET | `/api/v1/conflicts/:conflictId` | Get single conflict details | Public |
+| POST | `/api/v1/conflicts` | Create a new record | Private (Auth) |
+| PUT | `/api/v1/conflicts/:conflictId` | Replace conflict data | Private (Auth) |
+| PATCH | `/api/v1/conflicts/:conflictId` | Update specific fields | Private (Auth) |
+| DELETE | `/api/v1/conflicts/:conflictId` | Remove conflict record | Private (Auth) |
 
+---
 
+## 🗄 Database Schema
+
+### Conflict Model
+```javascript
+{
+  Conflict_Name: { type: String, required: true },
+  Conflict_Type: { type: String, required: true },
+  Region: { type: String, required: true },
+  Start_Year: { type: String, required: true },
+  End_Year: { type: String },
+  Status: { type: String, required: true },
+  Primary_Country: { type: String, required: true },
+  GDP_Change_Percentage: { type: Number },
+  Inflation_Rate_Percentage: { type: Number },
+  Cost_of_War_USD: { type: Number }
+}
+```
+
+---
+
+## 🚨 Error Handling
+
+The API uses a global error-handling middleware for consistent output:
+
+```json
+{
+  "message": "Conflict not found",
+  "stack": "..." // Only visible in Development mode
+}
+```
+
+---
+
+## ⚡ Performance Optimizations
+
+-   **Massive Insertions**: Optimized `insertMany` in seeder for high-speed data migration.
+-   **Indexing**: (Planned) Strategic indexing on `Region`, `Status`, and `Conflict_Name`.
+-   **Lean Data Access**: Minimizing payload size by selecting specific fields for list views.
+
+---
+
+## 📡 API Usage Example (POST)
+
+**Endpoint**: `POST /api/v1/conflicts`
+**Auth**: `Bearer <token>`
+
+**Sample Request**:
+```json
+{
+  "Conflict_Name": "Modern Conflict Alpha",
+  "Conflict_Type": "Interstate War",
+  "Region": "Asia",
+  "Status": "Ongoing",
+  "Primary_Country": "India",
+  "Start_Year": "2024"
+}
+```
+
+---
+
+<div align="center">
+
+### Built with ❤️ by [Zeel Kundariya](https://github.com/Zeelkundariya)
+
+**[↑ Back to Top](#-war-economic-impact-analysis-api)**
+
+</div>
