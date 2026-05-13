@@ -9,11 +9,12 @@ const {
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
-router.route('/').get(getConflicts).post(protect, admin, createConflict);
+router.route('/').get(getConflicts).post(protect, createConflict);
 router
-  .route('/:id')
+  .route('/:conflictId')
   .get(getConflictById)
-  .put(protect, admin, updateConflict)
-  .delete(protect, admin, deleteConflict);
+  .put(protect, updateConflict)
+  .patch(protect, updateConflict)
+  .delete(protect, deleteConflict);
 
 module.exports = router;

@@ -11,7 +11,7 @@ const getConflicts = async (req, res) => {
 
 const getConflictById = async (req, res) => {
   try {
-    const conflict = await Conflict.findById(req.params.id);
+    const conflict = await Conflict.findById(req.params.conflictId);
     if (conflict) {
       res.json(conflict);
     } else {
@@ -24,9 +24,8 @@ const getConflictById = async (req, res) => {
 
 const createConflict = async (req, res) => {
   try {
-    const conflict = new Conflict(req.body);
-    const createdConflict = await conflict.save();
-    res.status(201).json(createdConflict);
+    const conflict = await Conflict.create(req.body);
+    res.status(201).json(conflict);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -34,11 +33,12 @@ const createConflict = async (req, res) => {
 
 const updateConflict = async (req, res) => {
   try {
-    const conflict = await Conflict.findById(req.params.id);
+    const conflict = await Conflict.findByIdAndUpdate(req.params.conflictId, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (conflict) {
-      Object.assign(conflict, req.body);
-      const updatedConflict = await conflict.save();
-      res.json(updatedConflict);
+      res.json(conflict);
     } else {
       res.status(404).json({ message: 'Conflict not found' });
     }
@@ -49,9 +49,8 @@ const updateConflict = async (req, res) => {
 
 const deleteConflict = async (req, res) => {
   try {
-    const conflict = await Conflict.findById(req.params.id);
+    const conflict = await Conflict.findByIdAndDelete(req.params.conflictId);
     if (conflict) {
-      await conflict.deleteOne();
       res.json({ message: 'Conflict removed' });
     } else {
       res.status(404).json({ message: 'Conflict not found' });
