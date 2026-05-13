@@ -147,6 +147,18 @@ npm start
 | PATCH | `/api/v1/conflicts/:conflictId` | Update specific fields | Private (Auth) |
 | DELETE | `/api/v1/conflicts/:conflictId` | Remove conflict record | Private (Auth) |
 
+### 🔍 Search & Filter
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| GET | `/api/v1/search?q=keyword` | Search across names and countries | Public |
+| GET | `/api/v1/conflicts?region=Europe&status=Ongoing` | Multi-parameter filtering | Public |
+
+### 📊 Statistics
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| GET | `/api/v1/stats/total` | Global summary of conflict data | Public |
+| GET | `/api/v1/stats/highest-impact` | Trending high-impact conflict data | Public |
+
 ---
 
 ## 🗄 Database Schema
