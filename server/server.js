@@ -21,10 +21,13 @@ app.use(cors());
 
 
 
-// Routes placeholder
+// Routes
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+app.use('/api/v1/conflicts', require('./routes/conflictRoutes'));
+app.use('/api/v1/auth', require('./routes/authRoutes'));
 
 app.use(errorHandler);
 
