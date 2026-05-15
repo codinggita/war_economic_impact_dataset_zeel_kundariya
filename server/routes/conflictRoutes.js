@@ -16,6 +16,11 @@ const {
   getConflictsByInflation,
   getConflictsByGDPLoss,
   getConflictsByPoverty,
+  getConflictsByExtremePoverty,
+  getConflictsByFoodInsecurity,
+  getConflictsByUnemployment,
+  getConflictsByYouthUnemployment,
+  getConflictsBySector,
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -57,5 +62,20 @@ router.get('/gdp-loss/:percentage', getConflictsByGDPLoss);
 
 // Fetch conflicts by poverty rate
 router.get('/poverty/:rate', getConflictsByPoverty);
+
+// Fetch conflicts by extreme poverty
+router.get('/extreme-poverty/:rate', getConflictsByExtremePoverty);
+
+// Fetch conflicts by food insecurity
+router.get('/food-insecurity/:rate', getConflictsByFoodInsecurity);
+
+// Fetch conflicts by unemployment
+router.get('/unemployment/:rate', getConflictsByUnemployment);
+
+// Fetch conflicts by youth unemployment
+router.get('/youth-unemployment/:rate', getConflictsByYouthUnemployment);
+
+// Fetch conflicts by sector
+router.get('/sector/:sector', getConflictsBySector);
 
 module.exports = router;

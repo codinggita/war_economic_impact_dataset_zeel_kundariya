@@ -24,6 +24,11 @@ const importData = async () => {
       Inflation_Rate_Percentage: parseFloat(conflict["Inflation_Rate_%"]),
       Cost_of_War_USD: parseFloat(conflict.Cost_of_War_USD),
       During_War_Poverty_Rate_Percentage: parseFloat(conflict["During_War_Poverty_Rate_%"]),
+      Extreme_Poverty_Rate_Percentage: parseFloat(conflict["Extreme_Poverty_Rate_%"]),
+      Food_Insecurity_Rate_Percentage: parseFloat(conflict["Food_Insecurity_Rate_%"]),
+      During_War_Unemployment_Percentage: parseFloat(conflict["During_War_Unemployment_%"]),
+      Youth_Unemployment_Change_Percentage: parseFloat(conflict["Youth_Unemployment_Change_%"]),
+      Most_Affected_Sector: conflict.Most_Affected_Sector,
     }));
 
     await Conflict.insertMany(sampleData);

@@ -13,6 +13,11 @@ const conflictSchema = mongoose.Schema(
     Inflation_Rate_Percentage: { type: Number },
     Cost_of_War_USD: { type: Number },
     During_War_Poverty_Rate_Percentage: { type: Number },
+    Extreme_Poverty_Rate_Percentage: { type: Number },
+    Food_Insecurity_Rate_Percentage: { type: Number },
+    During_War_Unemployment_Percentage: { type: Number },
+    Youth_Unemployment_Change_Percentage: { type: Number },
+    Most_Affected_Sector: { type: String },
   },
   {
     timestamps: true,

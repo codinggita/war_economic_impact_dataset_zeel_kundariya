@@ -180,6 +180,66 @@ const getConflictsByPoverty = async (req, res) => {
   }
 };
 
+// Fetch conflicts by extreme poverty
+const getConflictsByExtremePoverty = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Extreme_Poverty_Rate_Percentage: parseFloat(req.params.rate),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by food insecurity
+const getConflictsByFoodInsecurity = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Food_Insecurity_Rate_Percentage: parseFloat(req.params.rate),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by unemployment
+const getConflictsByUnemployment = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      During_War_Unemployment_Percentage: parseFloat(req.params.rate),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by youth unemployment
+const getConflictsByYouthUnemployment = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Youth_Unemployment_Change_Percentage: parseFloat(req.params.rate),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by sector
+const getConflictsBySector = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Most_Affected_Sector: { $regex: req.params.sector, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getConflicts,
   getConflictById,
@@ -196,4 +256,9 @@ module.exports = {
   getConflictsByInflation,
   getConflictsByGDPLoss,
   getConflictsByPoverty,
+  getConflictsByExtremePoverty,
+  getConflictsByFoodInsecurity,
+  getConflictsByUnemployment,
+  getConflictsByYouthUnemployment,
+  getConflictsBySector,
 };
