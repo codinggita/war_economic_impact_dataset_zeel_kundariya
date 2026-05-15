@@ -11,6 +11,11 @@ const {
   getConflictsByRegion,
   getConflictsByStatus,
   getConflictsByCountry,
+  getConflictsByStartYear,
+  getConflictsByEndYear,
+  getConflictsByInflation,
+  getConflictsByGDPLoss,
+  getConflictsByPoverty,
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -37,5 +42,20 @@ router.get('/status/:status', getConflictsByStatus);
 
 // Fetch conflicts by country
 router.get('/country/:country', getConflictsByCountry);
+
+// Fetch conflicts by start year
+router.get('/start-year/:year', getConflictsByStartYear);
+
+// Fetch conflicts by end year
+router.get('/end-year/:year', getConflictsByEndYear);
+
+// Fetch conflicts by inflation rate
+router.get('/inflation/:rate', getConflictsByInflation);
+
+// Fetch conflicts by GDP loss
+router.get('/gdp-loss/:percentage', getConflictsByGDPLoss);
+
+// Fetch conflicts by poverty rate
+router.get('/poverty/:rate', getConflictsByPoverty);
 
 module.exports = router;
