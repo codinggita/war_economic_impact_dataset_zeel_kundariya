@@ -21,6 +21,11 @@ const {
   getConflictsByUnemployment,
   getConflictsByYouthUnemployment,
   getConflictsBySector,
+  getConflictsByBlackMarketLevel,
+  getConflictsByBlackMarketGoods,
+  getConflictsByProfiteering,
+  getConflictsByCurrencyGap,
+  getConflictsByReconstructionCost,
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -77,5 +82,20 @@ router.get('/youth-unemployment/:rate', getConflictsByYouthUnemployment);
 
 // Fetch conflicts by sector
 router.get('/sector/:sector', getConflictsBySector);
+
+// Fetch conflicts by black market level
+router.get('/black-market/:level', getConflictsByBlackMarketLevel);
+
+// Fetch conflicts by black market goods
+router.get('/black-market-goods/:goods', getConflictsByBlackMarketGoods);
+
+// Fetch conflicts by profiteering status
+router.get('/profiteering/:status', getConflictsByProfiteering);
+
+// Fetch conflicts by currency gap
+router.get('/currency-gap/:gap', getConflictsByCurrencyGap);
+
+// Fetch conflicts by reconstruction cost
+router.get('/reconstruction-cost/:amount', getConflictsByReconstructionCost);
 
 module.exports = router;

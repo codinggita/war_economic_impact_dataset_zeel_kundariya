@@ -240,6 +240,66 @@ const getConflictsBySector = async (req, res) => {
   }
 };
 
+// Fetch conflicts by black market level
+const getConflictsByBlackMarketLevel = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Black_Market_Activity_Level: { $regex: req.params.level, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by black market goods
+const getConflictsByBlackMarketGoods = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Most_Traded_Black_Market_Goods: { $regex: req.params.goods, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by profiteering status
+const getConflictsByProfiteering = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      War_Profiteering_Instances: { $regex: req.params.status, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by currency gap
+const getConflictsByCurrencyGap = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Currency_Gap_Percentage: parseFloat(req.params.gap),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by reconstruction cost
+const getConflictsByReconstructionCost = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Estimated_Reconstruction_Cost_USD: parseFloat(req.params.amount),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getConflicts,
   getConflictById,
@@ -261,4 +321,9 @@ module.exports = {
   getConflictsByUnemployment,
   getConflictsByYouthUnemployment,
   getConflictsBySector,
+  getConflictsByBlackMarketLevel,
+  getConflictsByBlackMarketGoods,
+  getConflictsByProfiteering,
+  getConflictsByCurrencyGap,
+  getConflictsByReconstructionCost,
 };
