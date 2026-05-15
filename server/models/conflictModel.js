@@ -18,6 +18,11 @@ const conflictSchema = mongoose.Schema(
     During_War_Unemployment_Percentage: { type: Number },
     Youth_Unemployment_Change_Percentage: { type: Number },
     Most_Affected_Sector: { type: String },
+    Black_Market_Activity_Level: { type: String },
+    Most_Traded_Black_Market_Goods: { type: String },
+    War_Profiteering_Instances: { type: String },
+    Currency_Gap_Percentage: { type: Number },
+    Estimated_Reconstruction_Cost_USD: { type: Number },
   },
   {
     timestamps: true,
