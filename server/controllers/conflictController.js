@@ -120,6 +120,66 @@ const getConflictsByCountry = async (req, res) => {
   }
 };
 
+// Fetch conflicts by start year
+const getConflictsByStartYear = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Start_Year: { $regex: req.params.year, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by end year
+const getConflictsByEndYear = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      End_Year: { $regex: req.params.year, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by inflation rate
+const getConflictsByInflation = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Inflation_Rate_Percentage: parseFloat(req.params.rate),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by GDP loss
+const getConflictsByGDPLoss = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      GDP_Change_Percentage: parseFloat(req.params.percentage),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by poverty rate
+const getConflictsByPoverty = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      During_War_Poverty_Rate_Percentage: parseFloat(req.params.rate),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getConflicts,
   getConflictById,
@@ -131,4 +191,9 @@ module.exports = {
   getConflictsByRegion,
   getConflictsByStatus,
   getConflictsByCountry,
+  getConflictsByStartYear,
+  getConflictsByEndYear,
+  getConflictsByInflation,
+  getConflictsByGDPLoss,
+  getConflictsByPoverty,
 };
