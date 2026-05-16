@@ -300,6 +300,71 @@ const getConflictsByReconstructionCost = async (req, res) => {
   }
 };
 
+// Fetch conflicts by war cost
+const getConflictsByWarCost = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Cost_of_War_USD: parseFloat(req.params.amount),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch pre-war informal economy
+const getConflictsByInformalEconomyPre = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Informal_Economy_Size_Pre_War_Percentage: parseFloat(req.params.value),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch wartime informal economy
+const getConflictsByInformalEconomyDuring = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Informal_Economy_Size_During_War_Percentage: parseFloat(req.params.value),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by affected households
+const getConflictsByHouseholds = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Households_Fallen_Into_Poverty_Estimate: parseFloat(req.params.count),
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch latest regional conflict
+const getLatestRegionalConflict = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Region: { $regex: req.params.region, $options: 'i' },
+    }).sort({ Start_Year: -1 });
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'No conflicts found for this region' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getConflicts,
   getConflictById,
@@ -326,4 +391,9 @@ module.exports = {
   getConflictsByProfiteering,
   getConflictsByCurrencyGap,
   getConflictsByReconstructionCost,
+  getConflictsByWarCost,
+  getConflictsByInformalEconomyPre,
+  getConflictsByInformalEconomyDuring,
+  getConflictsByHouseholds,
+  getLatestRegionalConflict,
 };

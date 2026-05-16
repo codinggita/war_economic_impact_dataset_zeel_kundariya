@@ -34,6 +34,9 @@ const importData = async () => {
       War_Profiteering_Instances: conflict.War_Profiteering_Instances,
       Currency_Gap_Percentage: parseFloat(conflict["Official_vs_Black_Market_Rate_Gap_%"]) || 0,
       Estimated_Reconstruction_Cost_USD: parseFloat(conflict.Estimated_Reconstruction_Cost_USD) || 0,
+      Informal_Economy_Size_Pre_War_Percentage: parseFloat(conflict["Informal_Economy_Size_Pre_War_%"]) || 0,
+      Informal_Economy_Size_During_War_Percentage: parseFloat(conflict["Informal_Economy_Size_During_War_%"]) || 0,
+      Households_Fallen_Into_Poverty_Estimate: parseFloat(conflict.Households_Fallen_Into_Poverty_Estimate) || 0,
     }));
 
     await Conflict.insertMany(sampleData);

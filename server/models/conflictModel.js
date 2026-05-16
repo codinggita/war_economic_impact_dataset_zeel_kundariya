@@ -23,6 +23,9 @@ const conflictSchema = mongoose.Schema(
     War_Profiteering_Instances: { type: String },
     Currency_Gap_Percentage: { type: Number },
     Estimated_Reconstruction_Cost_USD: { type: Number },
+    Informal_Economy_Size_Pre_War_Percentage: { type: Number },
+    Informal_Economy_Size_During_War_Percentage: { type: Number },
+    Households_Fallen_Into_Poverty_Estimate: { type: Number },
   },
   {
     timestamps: true,
