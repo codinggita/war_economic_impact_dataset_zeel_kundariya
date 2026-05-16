@@ -31,6 +31,10 @@ const {
   getConflictsByInformalEconomyDuring,
   getConflictsByHouseholds,
   getLatestRegionalConflict,
+  getWarBlackMarketImpact,
+  getWarReconstructionDetails,
+  getWarCurrencyCrisis,
+  getWarUnemploymentImpact,
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -117,5 +121,17 @@ router.get('/households/:count', getConflictsByHouseholds);
 
 // Fetch latest regional conflict
 router.get('/region/:region/latest', getLatestRegionalConflict);
+
+// Fetch black market impact
+router.get('/war/:name/black-market', getWarBlackMarketImpact);
+
+// Fetch reconstruction details
+router.get('/war/:name/reconstruction', getWarReconstructionDetails);
+
+// Fetch currency crisis data
+router.get('/war/:name/currency-crisis', getWarCurrencyCrisis);
+
+// Fetch unemployment impact
+router.get('/war/:name/unemployment', getWarUnemploymentImpact);
 
 module.exports = router;

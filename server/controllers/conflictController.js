@@ -365,6 +365,74 @@ const getLatestRegionalConflict = async (req, res) => {
   }
 };
 
+// Fetch black market impact
+const getWarBlackMarketImpact = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Black_Market_Activity_Level Most_Traded_Black_Market_Goods War_Profiteering_Instances');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch reconstruction details
+const getWarReconstructionDetails = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Estimated_Reconstruction_Cost_USD Cost_of_War_USD');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch currency crisis data
+const getWarCurrencyCrisis = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Currency_Gap_Percentage Inflation_Rate_Percentage');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch unemployment impact
+const getWarUnemploymentImpact = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name During_War_Unemployment_Percentage Youth_Unemployment_Change_Percentage');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getConflicts,
   getConflictById,
@@ -396,4 +464,8 @@ module.exports = {
   getConflictsByInformalEconomyDuring,
   getConflictsByHouseholds,
   getLatestRegionalConflict,
+  getWarBlackMarketImpact,
+  getWarReconstructionDetails,
+  getWarCurrencyCrisis,
+  getWarUnemploymentImpact,
 };
