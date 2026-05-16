@@ -31,6 +31,16 @@ const {
   getConflictsByInformalEconomyDuring,
   getConflictsByHouseholds,
   getLatestRegionalConflict,
+  getOldestRegionalConflict,
+  getCountryConflictHistory,
+  getConflictCountByType,
+  getConflictCountByStatus,
+  getConflictsByYear,
+  getSectorHighestGDPLoss,
+  getSectorHighestInflation,
+  getWarSummary,
+  getWarEconomicImpact,
+  getWarPovertyImpact,
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -117,5 +127,29 @@ router.get('/households/:count', getConflictsByHouseholds);
 
 // Fetch latest regional conflict
 router.get('/region/:region/latest', getLatestRegionalConflict);
+
+// Fetch oldest regional conflict
+router.get('/region/:region/oldest', getOldestRegionalConflict);
+
+// Fetch country conflict history
+router.get('/country/:country/history', getCountryConflictHistory);
+
+// Count conflicts by type
+router.get('/type/:type/count', getConflictCountByType);
+
+// Count conflicts by status
+router.get('/status/:status/count', getConflictCountByStatus);
+
+// Fetch conflicts by year
+router.get('/year/:year', getConflictsByYear);
+
+// Sector specific analytics
+router.get('/sector/:sector/highest-gdp-loss', getSectorHighestGDPLoss);
+router.get('/sector/:sector/highest-inflation', getSectorHighestInflation);
+
+// War specific deep-dives
+router.get('/war/:name/summary', getWarSummary);
+router.get('/war/:name/economic-impact', getWarEconomicImpact);
+router.get('/war/:name/poverty-impact', getWarPovertyImpact);
 
 module.exports = router;
