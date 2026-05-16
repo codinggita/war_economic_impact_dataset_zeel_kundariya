@@ -394,7 +394,7 @@ const getCountryConflictHistory = async (req, res) => {
   }
 };
 
-// Count conflicts by type
+// Fetch conflict count by type
 const getConflictCountByType = async (req, res) => {
   try {
     const count = await Conflict.countDocuments({
@@ -406,7 +406,7 @@ const getConflictCountByType = async (req, res) => {
   }
 };
 
-// Count conflicts by status
+// Fetch conflict count by status
 const getConflictCountByStatus = async (req, res) => {
   try {
     const count = await Conflict.countDocuments({
@@ -430,12 +430,12 @@ const getConflictsByYear = async (req, res) => {
   }
 };
 
-// Fetch sector with highest GDP loss
+// Fetch sector highest GDP loss
 const getSectorHighestGDPLoss = async (req, res) => {
   try {
     const conflict = await Conflict.findOne({
       Most_Affected_Sector: { $regex: req.params.sector, $options: 'i' },
-    }).sort({ GDP_Change_Percentage: 1 }); // Most negative
+    }).sort({ GDP_Change_Percentage: 1 });
     
     if (conflict) {
       res.json(conflict);
@@ -447,7 +447,7 @@ const getSectorHighestGDPLoss = async (req, res) => {
   }
 };
 
-// Fetch sector with highest inflation
+// Fetch sector highest inflation
 const getSectorHighestInflation = async (req, res) => {
   try {
     const conflict = await Conflict.findOne({
@@ -515,6 +515,74 @@ const getWarPovertyImpact = async (req, res) => {
   }
 };
 
+// Fetch black market impact
+const getWarBlackMarketImpact = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Black_Market_Activity_Level Most_Traded_Black_Market_Goods War_Profiteering_Instances');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch reconstruction details
+const getWarReconstructionDetails = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Estimated_Reconstruction_Cost_USD Cost_of_War_USD');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch currency crisis data
+const getWarCurrencyCrisis = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Currency_Gap_Percentage Inflation_Rate_Percentage');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch unemployment impact
+const getWarUnemploymentImpact = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name During_War_Unemployment_Percentage Youth_Unemployment_Change_Percentage');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getConflicts,
   getConflictById,
@@ -556,4 +624,8 @@ module.exports = {
   getWarSummary,
   getWarEconomicImpact,
   getWarPovertyImpact,
+  getWarBlackMarketImpact,
+  getWarReconstructionDetails,
+  getWarCurrencyCrisis,
+  getWarUnemploymentImpact,
 };
