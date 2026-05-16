@@ -31,6 +31,16 @@ const {
   getConflictsByInformalEconomyDuring,
   getConflictsByHouseholds,
   getLatestRegionalConflict,
+  getOldestRegionalConflict,
+  getCountryConflictHistory,
+  getConflictCountByType,
+  getConflictCountByStatus,
+  getConflictsByYear,
+  getSectorHighestGDPLoss,
+  getSectorHighestInflation,
+  getWarSummary,
+  getWarEconomicImpact,
+  getWarPovertyImpact,
   getWarBlackMarketImpact,
   getWarReconstructionDetails,
   getWarCurrencyCrisis,
@@ -121,6 +131,36 @@ router.get('/households/:count', getConflictsByHouseholds);
 
 // Fetch latest regional conflict
 router.get('/region/:region/latest', getLatestRegionalConflict);
+
+// Fetch oldest regional conflict
+router.get('/region/:region/oldest', getOldestRegionalConflict);
+
+// Fetch country conflict history
+router.get('/country/:country/history', getCountryConflictHistory);
+
+// Fetch conflict count by type
+router.get('/type/:type/count', getConflictCountByType);
+
+// Fetch conflict count by status
+router.get('/status/:status/count', getConflictCountByStatus);
+
+// Fetch conflicts by year
+router.get('/year/:year', getConflictsByYear);
+
+// Fetch sector highest GDP loss
+router.get('/sector/:sector/highest-gdp-loss', getSectorHighestGDPLoss);
+
+// Fetch sector highest inflation
+router.get('/sector/:sector/highest-inflation', getSectorHighestInflation);
+
+// Fetch war summary
+router.get('/war/:name/summary', getWarSummary);
+
+// Fetch economic impact
+router.get('/war/:name/economic-impact', getWarEconomicImpact);
+
+// Fetch poverty impact
+router.get('/war/:name/poverty-impact', getWarPovertyImpact);
 
 // Fetch black market impact
 router.get('/war/:name/black-market', getWarBlackMarketImpact);

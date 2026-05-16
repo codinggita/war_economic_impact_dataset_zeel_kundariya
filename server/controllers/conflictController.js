@@ -365,6 +365,156 @@ const getLatestRegionalConflict = async (req, res) => {
   }
 };
 
+// Fetch oldest regional conflict
+const getOldestRegionalConflict = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Region: { $regex: req.params.region, $options: 'i' },
+    }).sort({ Start_Year: 1 });
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'No conflicts found for this region' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch country conflict history
+const getCountryConflictHistory = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Primary_Country: { $regex: req.params.country, $options: 'i' },
+    }).sort({ Start_Year: 1 });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflict count by type
+const getConflictCountByType = async (req, res) => {
+  try {
+    const count = await Conflict.countDocuments({
+      Conflict_Type: { $regex: req.params.type, $options: 'i' },
+    });
+    res.json({ type: req.params.type, count });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflict count by status
+const getConflictCountByStatus = async (req, res) => {
+  try {
+    const count = await Conflict.countDocuments({
+      Status: { $regex: req.params.status, $options: 'i' },
+    });
+    res.json({ status: req.params.status, count });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch conflicts by year
+const getConflictsByYear = async (req, res) => {
+  try {
+    const conflicts = await Conflict.find({
+      Start_Year: { $regex: req.params.year, $options: 'i' },
+    });
+    res.json(conflicts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch sector highest GDP loss
+const getSectorHighestGDPLoss = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Most_Affected_Sector: { $regex: req.params.sector, $options: 'i' },
+    }).sort({ GDP_Change_Percentage: 1 });
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'No conflicts found for this sector' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch sector highest inflation
+const getSectorHighestInflation = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Most_Affected_Sector: { $regex: req.params.sector, $options: 'i' },
+    }).sort({ Inflation_Rate_Percentage: -1 });
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'No conflicts found for this sector' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch war summary
+const getWarSummary = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name Conflict_Type Region Start_Year End_Year Status Primary_Country');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch economic impact
+const getWarEconomicImpact = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name GDP_Change_Percentage Inflation_Rate_Percentage Cost_of_War_USD Estimated_Reconstruction_Cost_USD Informal_Economy_Size_Pre_War_Percentage Informal_Economy_Size_During_War_Percentage');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fetch poverty impact
+const getWarPovertyImpact = async (req, res) => {
+  try {
+    const conflict = await Conflict.findOne({
+      Conflict_Name: { $regex: req.params.name, $options: 'i' },
+    }).select('Conflict_Name During_War_Poverty_Rate_Percentage Extreme_Poverty_Rate_Percentage Food_Insecurity_Rate_Percentage During_War_Unemployment_Percentage Households_Fallen_Into_Poverty_Estimate');
+    
+    if (conflict) {
+      res.json(conflict);
+    } else {
+      res.status(404).json({ message: 'War not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Fetch black market impact
 const getWarBlackMarketImpact = async (req, res) => {
   try {
@@ -464,6 +614,16 @@ module.exports = {
   getConflictsByInformalEconomyDuring,
   getConflictsByHouseholds,
   getLatestRegionalConflict,
+  getOldestRegionalConflict,
+  getCountryConflictHistory,
+  getConflictCountByType,
+  getConflictCountByStatus,
+  getConflictsByYear,
+  getSectorHighestGDPLoss,
+  getSectorHighestInflation,
+  getWarSummary,
+  getWarEconomicImpact,
+  getWarPovertyImpact,
   getWarBlackMarketImpact,
   getWarReconstructionDetails,
   getWarCurrencyCrisis,
