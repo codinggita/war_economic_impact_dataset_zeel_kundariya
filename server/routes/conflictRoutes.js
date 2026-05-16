@@ -26,6 +26,11 @@ const {
   getConflictsByProfiteering,
   getConflictsByCurrencyGap,
   getConflictsByReconstructionCost,
+  getConflictsByWarCost,
+  getConflictsByInformalEconomyPre,
+  getConflictsByInformalEconomyDuring,
+  getConflictsByHouseholds,
+  getLatestRegionalConflict,
 } = require('../controllers/conflictController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -97,5 +102,20 @@ router.get('/currency-gap/:gap', getConflictsByCurrencyGap);
 
 // Fetch conflicts by reconstruction cost
 router.get('/reconstruction-cost/:amount', getConflictsByReconstructionCost);
+
+// Fetch conflicts by war cost
+router.get('/cost-of-war/:amount', getConflictsByWarCost);
+
+// Fetch pre-war informal economy
+router.get('/informal-economy/pre/:value', getConflictsByInformalEconomyPre);
+
+// Fetch wartime informal economy
+router.get('/informal-economy/during/:value', getConflictsByInformalEconomyDuring);
+
+// Fetch conflicts by affected households
+router.get('/households/:count', getConflictsByHouseholds);
+
+// Fetch latest regional conflict
+router.get('/region/:region/latest', getLatestRegionalConflict);
 
 module.exports = router;
